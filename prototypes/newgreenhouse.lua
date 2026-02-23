@@ -47,7 +47,7 @@ local seed_prob
 local time_req
 
 for i = 1, GH_max_grades["bob-greenhouse"] do
-    min_r, max_r, seed_prob, time_req = get_wood_recipe(10, 20, 0.3, 60, GH_max_grades["bob-greenhouse"], i)
+    min_r, max_r, seed_prob, time_req = get_wood_recipe(7, 15, 0.3, 60, GH_max_grades["bob-greenhouse"], i)
     data:extend({
         {
             type = "recipe",
@@ -74,7 +74,7 @@ for i = 1, GH_max_grades["bob-greenhouse"] do
 end
 
 for i = 1, GH_max_grades["bob-greenhouse-advanced"] do
-    min_r, max_r, seed_prob, time_req = get_wood_recipe(15, 45, 0.4, 45, GH_max_grades["bob-greenhouse-advanced"], i)
+    min_r, max_r, seed_prob, time_req = get_wood_recipe(12, 35, 0.4, 45, GH_max_grades["bob-greenhouse-advanced"], i)
     data:extend({
         {
             type = "recipe",
@@ -129,7 +129,7 @@ table.insert(data.raw.technology["bob-fertiliser"].effects,
 
 local r = data.raw["assembling-machine"]["bob-greenhouse"]
 r.crafting_categories = {"mn-wood-spam-tier1"}
-r.energy_usage = "70kW"
+--r.energy_usage = "70kW"
 r.allow_copy_paste = false
 r.fast_replaceable_group = "bob-greenhouse"
 r.next_upgrade = "bob-greenhouse-advanced"

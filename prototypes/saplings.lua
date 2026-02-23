@@ -102,7 +102,7 @@ data:extend({
             mods["bobplates"] and {type = "item", name = "bob-glass", amount = 30} or {type = "item", name = "copper-plate", amount = 20},
             {type = "item", name = "electronic-circuit", amount = 15},
             {type = "item", name = "stone-brick", amount = 30},
-            {type = "item", name = "pipe", amount = 20},
+            mods["boblogistics"] and {type = "item", name = "bob-bronze-pipe", amount = 20} or {type = "item", name = "pipe", amount = 20},
             mods["bobplates"] and { type = "item", name = "bob-steel-gear-wheel", amount = 12 } or { type = "item", name = "steel-plate", amount = 25 },
         },
         results = {{type = "item", name = "mn-greenhouse", amount = 1}}
@@ -366,7 +366,7 @@ data:extend({
           },
         },
         unit = {
-          count = 150,
+          count = 100,
           ingredients = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}

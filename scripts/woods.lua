@@ -28,7 +28,7 @@ function woods.MN_actions(e)
             house.lastP = house.entity.products_finished
             local max_grade = MNconst.GH_max_grades[house.entity.name]
             if (house.trees_total<max_grade*4) and math.random(1, math.ceil(math.abs(house.trees_total-max_grade*0.7)/5+max_grade*0.05)) == 1 then
-                game.print("Greenhouse #".. act_now.r.. " is ready to grow a tree")
+                --game.print("Greenhouse #".. act_now.r.. " is ready to grow a tree")
                 local trees_found = {}
                 for _, t in pairs(house.tr_list) do
                     table.insert(trees_found, t)
@@ -39,27 +39,27 @@ function woods.MN_actions(e)
                         x = parent_tree.position.x + (math.random(0,60)-30)/10,
                         y = parent_tree.position.y + (math.random(0,60)-30)/10,
                     }
-                    game.print("A tree is to be placed!")
+                    --game.print("A tree is to be placed!")
                     newborn_pos = parent_tree.surface.find_non_colliding_position(parent_tree.name, newborn_pos, 2, 0.01)
                     if newborn_pos then
                         local t_tile = parent_tree.surface.get_tile(newborn_pos)
                         local t_name = flora.check_tile_for_tree(t_tile)
                         if t_name then
                             parent_tree.surface.create_entity{name = parent_tree.name, position = newborn_pos, create_build_effect_smoke = true, raise_built = true}
-                            game.print("A tree is placed here: [gps=" .. newborn_pos.x.. ",".. newborn_pos.y.. "]")
+                            --game.print("A tree is placed here: [gps=" .. newborn_pos.x.. ",".. newborn_pos.y.. "]")
                         else
-                            game.print("Selected land is not fertile for a new tree")    
+                            --game.print("Selected land is not fertile for a new tree")    
                         end
                     else
-                        game.print("No place was found for a new tree")
+                        --game.print("No place was found for a new tree")
                     end
                 end
 
             else
-                game.print("Greenhouse #".. act_now.r.. " prepared for a tree growth, but has bad luck")
+                --game.print("Greenhouse #".. act_now.r.. " prepared for a tree growth, but has bad luck")
             end
         else
-            game.print("Greenhouse #".. act_now.r.. " hasn't been working enough to change forest")
+           -- game.print("Greenhouse #".. act_now.r.. " hasn't been working enough to change forest")
         end
         storage.mn_acts[find_free_tick(e.tick + MNconst.GH_grow_interval)] = {
             type = act_types.grow,
@@ -212,7 +212,7 @@ function woods.GHadded(entity, t)
         type = act_types.grow,
         r = r
     }
-    game.print("GH #".. r.. " installed. To be checked next time at tick:".. t .. " Engaged trees: ".. trees_number.. " Total trees: ".. houses[r].trees_total )
+    --game.print("GH #".. r.. " installed. To be checked next time at tick:".. t .. " Engaged trees: ".. trees_number.. " Total trees: ".. houses[r].trees_total )
 end
 
 function woods.GHremoved(entity, t)

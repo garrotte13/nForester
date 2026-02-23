@@ -82,7 +82,7 @@ script.on_event({
 	defines.events.on_robot_built_entity,
 	defines.events.script_raised_built,
 	defines.events.script_raised_revive,
-	--defines.events.on_entity_cloned,
+	defines.events.on_entity_cloned,
 }, smth_built)
 
 script.on_event({
@@ -92,9 +92,9 @@ script.on_event({
 	defines.events.script_raised_destroy,
 }, smth_destroyed)
 
-script.on_event({
-	defines.events.on_entity_cloned,
-}, smth_built2)
+--script.on_event({
+--	defines.events.on_entity_cloned,
+--}, smth_built2)
 
 --[[
 script.on_event(defines.events.on_entity_cloned, function (e)
