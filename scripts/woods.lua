@@ -47,7 +47,7 @@ function woods.MN_actions(e)
                         local t_name = flora.check_tile_for_tree(t_tile)
                         if t_name then
                             parent_tree.surface.create_entity{name = parent_tree.name, position = newborn_pos, create_build_effect_smoke = true, raise_built = true}
-                            game.print("A tree is placed here: [gps=" .. newborn_pos.x.. ",".. newborn_pos.y.. "]")
+                            --game.print("A tree is placed here: [gps=" .. newborn_pos.x.. ",".. newborn_pos.y.. "]")
                         else
                             --game.print("Selected land is not fertile for a new tree")    
                         end
@@ -93,6 +93,8 @@ function woods.MN_actions(e)
                 storage.mn_chunks[chunkk] = nil
             end
             local pa = house.lastP
+            storage.mn_gh[act_now.r].tr_list = nil
+            storage.mn_gh[act_now.r] = nil
             woods.GHadded(house.entity, e.tick, true)
             storage.mn_gh[act_now.r].lastP = pa
         end
@@ -100,15 +102,25 @@ function woods.MN_actions(e)
         local house = storage.mn_gh[act_now.r]
         if house and house.entity and house.entity.valid then
             local the_tr = act_now.tree_str
-            if (house.grade > 0 and not the_tr) or not house.tr_list[the_tr] then the_tr = next(house.tr_list, nil) end
-            local k = 0
-            while k < 21 and the_tr do
-                local tree = house.tr_list[the_tr]
-                if tree and tree.valid then
-                    
+            if house.grade > 0 and house.entity.energy > 0 then                
+                if not the_tr or not house.tr_list[the_tr] then the_tr = next(house.tr_list, nil) end
+                local k = 1
+                while k < 16 and the_tr do
+                    local tree = house.tr_list[the_tr]
+                    if tree and tree.valid then
+                        local t_stage = tree.tree_stage_index + 1
+                        local t_gray = tree.tree_gray_stage_index + 3
+                        if t_stage > 2 or t_gray > 6 then
+                            if math.random(1, t_stage) > 2 or math.random(1, t_gray) > 6 then
+                                tree.damage(800, "player")
+                                house.entity.get_output_inventory().insert({name="wood", count=4})
+                                --game.print("A tree was killed.")
+                            end
+                        end
+                    end
+                    the_tr = next(house.tr_list, the_tr)
+                    k = k + 1
                 end
-                the_tr = next(house.tr_list, the_tr)
-                k = k + 1
             end
             storage.mn_acts[find_free_tick(e.tick + MNconst.GH_grow_interval/2)] = {
                 type = act_types.check_poison,
@@ -128,15 +140,15 @@ end
 
 local function GH_SetRecipe(house, grade)
     local progress_now = house.crafting_progress or 0
-    if grade == 0 then
-        house.set_recipe(nil)
-        house.recipe_locked = true
-        return progress_now
-    else
+    --if grade == 0 then
+    --    house.set_recipe(nil)
+    --    house.recipe_locked = true
+    --    return progress_now
+    --else
         house.set_recipe(MNconst.GH_recipe_prefixes[house.name] .. grade)
         house.crafting_progress = progress_now
         house.recipe_locked = true
-    end
+    --end
 end
 
 local function find_houses(entity, dbl)
@@ -157,7 +169,7 @@ local function find_houses(entity, dbl)
     end
     if not found_chunks then return end
 
-    local found = entity.surface.find_entities_filtered{position = entity.position, radius = s_radius - 1.28, name = MNconst.GH_names, force = "player" }
+    local found = entity.surface.find_entities_filtered{position = entity.position, radius = s_radius - 1.48, name = MNconst.GH_names, force = "player" }
     local f_houses = {}
     if found and found[1] then
         for i = 1,#found do
@@ -239,7 +251,7 @@ function woods.GHadded(entity, t, no_kick)
         type = act_types.grow,
         r = r
     }
-    game.print("GH #".. r.. " installed. To be checked next time at tick:".. t .. " Engaged trees: ".. trees_number.. " Total trees: ".. houses[r].trees_total )
+    --game.print("GH #".. r.. " installed. To be checked next time at tick:".. t .. " Engaged trees: ".. trees_number.. " Total trees: ".. houses[r].trees_total )
 end
 
 function woods.GHremoved(entity, t)
@@ -291,7 +303,7 @@ function woods.TreeAdded(entity, t)
             houses[h].trees_total = houses[h].trees_total + 1
             if tree_is_free and houses[h].grade < MNconst.GH_max_grades[houses_near[i].name] then
                 houses[h].grade = houses[h].grade + 1
-                game.print("A tree added to the work space of GH #"..h)
+                --game.print("A tree added to the work space of GH #"..h)
                 tree_is_free = false
                 houses[h].tr_list[entity.position.x .. ":" .. entity.position.y] = entity
                 GH_SetRecipe(houses_near[i], houses[h].grade)
@@ -312,11 +324,11 @@ function woods.TreeRemoved(entity, t)
             if houses[h].grade > 0 and houses[h].tr_list[entity.position.x .. ":" .. entity.position.y]  then
                 houses[h].tr_list[entity.position.x .. ":" .. entity.position.y] = nil
                 houses[h].grade = houses[h].grade - 1
-                game.print("A tree removed from the work space of GH #"..h)
+                --game.print("A tree removed from the work space of GH #"..h)
                 GH_SetRecipe(houses_near[i], houses[h].grade)
                 if not houses[h].re_set and houses[h].trees_total > houses[h].grade then
                     houses[h].re_set = true
-                    storage.mn_acts[find_free_tick(math.ceil(9 + t/20)*20)] = {
+                    storage.mn_acts[find_free_tick(math.ceil(15 + t/20)*20)] = {
                         type = act_types.re_adding,
                         r = h
                     }

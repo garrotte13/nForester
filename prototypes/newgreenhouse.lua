@@ -46,7 +46,7 @@ local max_r
 local seed_prob
 local time_req
 
-for i = 1, GH_max_grades["bob-greenhouse"] do
+for i = 0, GH_max_grades["bob-greenhouse"] do
     min_r, max_r, seed_prob, time_req = get_wood_recipe(7, 15, 0.3, 60, GH_max_grades["bob-greenhouse"], i)
     data:extend({
         {
@@ -65,15 +65,15 @@ for i = 1, GH_max_grades["bob-greenhouse"] do
             allow_decomposition = false,
             energy_required = time_req,
             always_show_products = true,
-            --show_amount_in_title = false,
-            emissions_multiplier = 0.5,
+            show_amount_in_title = false,
+            emissions_multiplier = seed_prob * 3,
             localised_name = {"item-name.wood"},
             main_product = "wood"
         }
     })
 end
 
-for i = 1, GH_max_grades["bob-greenhouse-advanced"] do
+for i = 0, GH_max_grades["bob-greenhouse-advanced"] do
     min_r, max_r, seed_prob, time_req = get_wood_recipe(12, 35, 0.4, 45, GH_max_grades["bob-greenhouse-advanced"], i)
     data:extend({
         {
@@ -93,8 +93,8 @@ for i = 1, GH_max_grades["bob-greenhouse-advanced"] do
             allow_decomposition = false,
             energy_required = time_req,
             always_show_products = true,
-            --show_amount_in_title = false,
-            emissions_multiplier = 0.7,
+            show_amount_in_title = false,
+            emissions_multiplier = seed_prob * 3,
             localised_name = {"item-name.wood"},
             main_product = "wood"
         }
@@ -136,6 +136,7 @@ r.next_upgrade = "bob-greenhouse-advanced"
 local gh_adv = table.deepcopy(r)
 gh_adv.name = "bob-greenhouse-advanced"
 gh_adv.minable.result = "bob-greenhouse-advanced"
+gh_adv.energy_usage = tonumber(string.match(gh_adv.energy_usage, "(%d+)kW")) * 2.0  .. "kW"
 gh_adv.crafting_categories = {"mn-wood-spam-tier2"}
 gh_adv.next_upgrade = nil
 
