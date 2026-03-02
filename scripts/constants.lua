@@ -2,7 +2,7 @@ local constants = {}
 -- CONSTANTS
 
 constants.GH_radius = 20
-constants.GH_grow_interval = 11000 -- must be a multiple of 40
+constants.GH_grow_interval = 15000 -- must be a multiple of 40
 constants.GH_names = {"bob-greenhouse","bob-greenhouse-advanced"}
 constants.GH_recipe_prefixes = {
     ["bob-greenhouse"] = "mn-basic-greenhouse-cycle-",
