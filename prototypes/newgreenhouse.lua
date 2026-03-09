@@ -47,7 +47,7 @@ local seed_prob
 local time_req
 
 for i = 0, GH_max_grades["bob-greenhouse"] do
-    min_r, max_r, seed_prob, time_req = get_wood_recipe(8, 16, 0.3, 60, GH_max_grades["bob-greenhouse"], i)
+    min_r, max_r, seed_prob, time_req = get_wood_recipe(8, 16, 0.2, 60, GH_max_grades["bob-greenhouse"], i)
     data:extend({
         {
             type = "recipe",
@@ -74,7 +74,7 @@ for i = 0, GH_max_grades["bob-greenhouse"] do
 end
 
 for i = 0, GH_max_grades["bob-greenhouse-advanced"] do
-    min_r, max_r, seed_prob, time_req = get_wood_recipe(12, 40, 0.4, 45, GH_max_grades["bob-greenhouse-advanced"], i)
+    min_r, max_r, seed_prob, time_req = get_wood_recipe(12, 40, 0.3, 45, GH_max_grades["bob-greenhouse-advanced"], i)
     data:extend({
         {
             type = "recipe",

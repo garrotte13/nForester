@@ -37,8 +37,8 @@ function woods.MN_actions(e)
                 if house.entity.get_output_inventory().remove({name="bob-seedling", count=1}) > 0 and math.random(1,7) > 1 then
                     local parent_tree = trees_found[math.random(1,#trees_found)]
                     local newborn_pos = {
-                        x = parent_tree.position.x + (math.random(0,60)-30)/10,
-                        y = parent_tree.position.y + (math.random(0,60)-30)/10,
+                        x = parent_tree.position.x + (math.random(0,200)-100)/50,
+                        y = parent_tree.position.y + (math.random(0,200)-100)/50,
                     }
                     --game.print("A tree is to be placed!")
                     newborn_pos = parent_tree.surface.find_non_colliding_position(parent_tree.name, newborn_pos, 2, 0.01)
