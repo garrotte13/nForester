@@ -12,7 +12,7 @@ local function house_cursor(player)
     local pcg = player.cursor_ghost
     if pcs and pcs.valid_for_read and pcs.valid and v_in_table(pcs.name,MN_const.GH_names) then
       return true
-    elseif pcg and pcg.valid and v_in_table(pcg.name,MN_const.GH_names) then
+    elseif pcg and v_in_table(pcg.name.name,MN_const.GH_names) then
       return true
     end
 end
@@ -196,9 +196,11 @@ function house_renders.selection_changed(player)
   
   function house_renders.cursor_changed(player)
     if house_cursor(player) then
+      game.print("showing all circles")
       show_all_circles(player)
     else
       hide_all_circles(player)
+      game.print("hiding all circles")
     end
   end
 
