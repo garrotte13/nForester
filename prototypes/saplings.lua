@@ -193,7 +193,7 @@ data:extend({
     working_sound = {
         sound = {
           filename = "__nForester__/sounds/greenhouse-watering_16s.ogg",
-          volume = 0.95,
+          volume = 1.5,
           aggregation = {
             max_count = 1,
             remove = false,

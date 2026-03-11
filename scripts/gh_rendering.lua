@@ -10,9 +10,9 @@ end
 local function house_cursor(player)
     local pcs = player.cursor_stack
     local pcg = player.cursor_ghost
-    if pcs and pcs.valid_for_read and pcs.valid and v_in_table(pcs.name,MN_const.GH_names) then
+    if pcs and pcs.valid_for_read and pcs.valid and ( v_in_table(pcs.name,MN_const.GH_names) or pcs.name == "mn-sapling-dry" ) then
       return true
-    elseif pcg and v_in_table(pcg.name.name,MN_const.GH_names) then
+    elseif pcg and ( v_in_table(pcg.name.name,MN_const.GH_names) or pcg.name.name == "mn-sapling-dry" ) then
       return true
     end
 end
