@@ -19,7 +19,7 @@ data:extend({
 
     {
         type = "recipe",
-        name = "mn-sapling",
+        name = "mn-sapling-dry",
         energy_required = 140,
         show_amount_in_title = false,
         enabled = false,
@@ -29,7 +29,7 @@ data:extend({
           { type = "fluid", name = "water", amount = 175 },
           { type = "fluid", name = "bob-carbon-dioxide", amount = 450 },
         },
-        results = { { type = "item", name = "mn-sapling", amount_min = 15, amount_max = 30} },
+        results = { { type = "item", name = "mn-sapling-dry", amount_min = 15, amount_max = 30} },
     },
     {
         type = "recipe",
@@ -42,23 +42,23 @@ data:extend({
           { type = "item", name = "bob-seedling", amount = 30 },
           { type = "fluid", name = "water", amount = 175 },
           { type = "fluid", name = "bob-carbon-dioxide", amount = 600 },
-          { type = "item", name = "bob-fertiliser", amount = 15 },
+          { type = "item", name = "bob-fertiliser", amount = 12 },
         },
-        results = { { type = "item", name = "mn-sapling", amount_min = 25, amount_max = 30} },
+        results = { { type = "item", name = "mn-sapling-dry", amount_min = 25, amount_max = 30} },
     },
     -- taken from the mod https://mods.factorio.com/mod/TreeSeeds
     {
 		type = "item",
-		name = "mn-sapling",
+		name = "mn-sapling-dry",
 		subgroup = "terrain",
 		icon = "__nForester__/graphics/saplings/icon_sapling.png",
 		icon_size = 32,
 		stack_size = 50,
-		place_result = "sapling-dry"
+		place_result = "mn-sapling-dry"
 	},
     {
       type = 'simple-entity-with-owner',
-      name = 'sapling-dry',
+      name = 'mn-sapling-dry',
       icon = '__nForester__/graphics/saplings/icon_sapling.png',
       icon_size = 32,
   
@@ -114,6 +114,8 @@ data:extend({
     name = "mn-greenhouse",
     icon = "__nForester__/graphics/gh/greenhouse-icon.png",
     icon_size = 64,
+    show_recipe_icon = false,
+    draw_entity_info_icon_background = false,
     flags = {"placeable-neutral", "player-creation",
         "not-rotatable"
     },
@@ -364,7 +366,7 @@ data:extend({
           },
           {
             type = "unlock-recipe",
-            recipe = "mn-sapling",
+            recipe = "mn-sapling-dry",
           },
         },
         unit = {

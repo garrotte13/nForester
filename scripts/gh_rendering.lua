@@ -196,11 +196,9 @@ function house_renders.selection_changed(player)
   
   function house_renders.cursor_changed(player)
     if house_cursor(player) then
-      game.print("showing all circles")
       show_all_circles(player)
     else
       hide_all_circles(player)
-      game.print("hiding all circles")
     end
   end
 

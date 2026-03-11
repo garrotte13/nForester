@@ -24,7 +24,7 @@ local function smth_built(e)
             circle_rendering.add_circle(entity, game.players[e.player_index])
             entity.set_recipe(MN_const.GH_recipe_prefixes[entity.ghost_name] .. MN_const.GH_max_grades[entity.ghost_name])
             entity.recipe_locked = true
-        elseif entity.name == "sapling-dry" then
+        elseif entity.name == "mn-sapling-dry" then
             woods.SaplingPlaced(entity, e.tick)
         end
     end
