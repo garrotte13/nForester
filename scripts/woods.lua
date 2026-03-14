@@ -103,7 +103,7 @@ function woods.MN_actions(e)
         if house and house.entity and house.entity.valid then
             local the_tr = act_now.tree_str
             if house.grade > 0 and house.entity.energy > 0 then                
-                if not the_tr or not house.tr_list[the_tr] then the_tr = next(house.tr_list, nil) end
+                if not house.tr_list[the_tr] then the_tr = next(house.tr_list) end
                 local k = 1
                 while k < 16 and the_tr do
                     local tree = house.tr_list[the_tr]
@@ -112,7 +112,7 @@ function woods.MN_actions(e)
                         local t_gray = tree.tree_gray_stage_index + 3
                         if t_stage > 2 or t_gray > 6 then
                             if math.random(1, t_stage) > 2 or math.random(1, t_gray) > 6 then
-                                tree.damage(800, "player")
+                                tree.damage(800, "neutral")
                                 house.entity.get_output_inventory().insert({name="wood", count=4})
                                 --game.print("A tree was killed.")
                             end
