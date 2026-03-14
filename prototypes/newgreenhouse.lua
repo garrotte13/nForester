@@ -85,8 +85,7 @@ for i = 0, GH_max_grades["bob-greenhouse-advanced"] do
             enabled = true,
             hidden = true,
             ingredients = {
-                { type = "fluid", name = "water", amount = 90 },
-                { type = "item", name = "bob-fertiliser", amount = 5 },
+                { type = "fluid", name = "mn-fertilizer", amount = 90 },
             },
             results = {
                 { type = "item", name = "wood", amount_min = min_r, amount_max = max_r },
@@ -128,6 +127,12 @@ table.insert(data.raw.technology["bob-fertiliser"].effects,
     type = "unlock-recipe",
     recipe = "bob-greenhouse-advanced"
 })
+table.insert(data.raw.technology["bob-fertiliser"].effects,
+{
+    type = "unlock-recipe",
+    recipe = "mn-fertilizer"
+})
+
 
 local r = data.raw["assembling-machine"]["bob-greenhouse"]
 r.crafting_categories = {"mn-wood-spam-tier1"}
