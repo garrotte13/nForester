@@ -2,10 +2,6 @@ local woods = require("__nForester__/scripts/woods")
 local circle_rendering = require("scripts.gh_rendering")
 local MN_const = require("scripts.constants")
 
---[[
-
-]]
-
 local function v_in_table(v, t)
     for i = 1, #t do
         if t[i] == v then return true end
@@ -32,7 +28,7 @@ end
 
 local function smth_built2(e)
     local entity = e.destination
-    game.print("Cloned properties to entity ".. entity.name)
+    --game.print("Cloned properties to entity ".. entity.name)
     
 end
 
