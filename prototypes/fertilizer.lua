@@ -20,7 +20,7 @@ data:extend({
         category = "chemistry",
         ingredients = {
           { type = "fluid", name = "water", amount = 90 },
-          { type = "fluid", name = "bob-carbon-dioxide", amount = 10 },
+          { type = "fluid", name = "bob-carbon-dioxide", amount = 15 },
           { type = "item", name = "bob-fertiliser", amount = 5 },
         },
         results = { { type = "fluid", name = "mn-fertilizer", amount = 90} },
