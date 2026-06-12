@@ -21,7 +21,11 @@ local function smth_built(e)
             entity.set_recipe(MN_const.GH_recipe_prefixes[entity.ghost_name] .. MN_const.GH_max_grades[entity.ghost_name])
             entity.recipe_locked = true
         elseif entity.name == "mn-sapling-dry" then
-            woods.SaplingPlaced(entity, e.tick)
+            local player
+            if e.player_index then
+                player = game.players[e.player_index]
+            end
+            woods.SaplingPlaced(entity, e.tick, player)
         end
     end
 end

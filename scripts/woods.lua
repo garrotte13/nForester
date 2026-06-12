@@ -71,8 +71,23 @@ function woods.MN_actions(e)
         if not sapling or not sapling.valid then return end
         local pos = sapling.position
         local sapling_surface = sapling.surface
-        sapling.destroy()
-        if math.random(1,5) > 1 then
+        local good_enough
+        local houses_near = act_now.parents
+        local houses_alive
+        if houses_near and houses_near[1] then
+            for i = 1,#houses_near do
+                --{entity = houses_near[i], lastP = houses_near[i].products_finished or 0}
+                if houses_near[i].entity and houses_near[i].entity.valid then
+                    houses_alive = true
+                    if houses_near[i].entity.products_finished > houses_near[i].lastP then
+                        good_enough = true
+                        break
+                    end
+                end
+            end
+        end
+        if good_enough then
+            sapling.destroy()
             if pos then
                 local t_tile = sapling_surface.get_tile(pos)
                 local t_name = flora.check_tile_for_tree(t_tile)
@@ -83,6 +98,15 @@ function woods.MN_actions(e)
                     end
                 end
             end
+        elseif houses_near and act_now.first_time and houses_alive then
+            storage.mn_acts[find_free_tick(math.ceil((e.tick+MNconst.GH_grow_interval*0.5)/20)*20)] = {
+                type = act_types.mature,
+                e = sapling,
+                parents = houses_near,
+                first_time = false
+            }
+        else
+            sapling.destroy()
         end
     elseif act_now.type == act_types.re_adding then
         local house = storage.mn_gh[act_now.r]
@@ -151,7 +175,7 @@ local function GH_SetRecipe(house, grade)
     --end
 end
 
-local function find_houses(entity, dbl)
+local function find_houses(entity, dbl, tree_rad)
     local s_radius = dbl and 2*MNconst.GH_radius or MNconst.GH_radius
     local zminX = math.floor( (entity.position.x - s_radius) / 32)
     local zmaxX = math.floor( (entity.position.x + s_radius) / 32)
@@ -168,8 +192,9 @@ local function find_houses(entity, dbl)
         end
     end
     if not found_chunks then return end
-
-    local found = entity.surface.find_entities_filtered{position = entity.position, radius = s_radius - 1.48, name = MNconst.GH_names, force = "player" }
+    local radius_shift
+    if tree_rad then radius_shift = 0.38 else radius_shift = 1.48 end
+    local found = entity.surface.find_entities_filtered{position = entity.position, radius = s_radius - radius_shift, name = MNconst.GH_names, force = "player" }
     local f_houses = {}
     if found and found[1] then
         for i = 1,#found do
@@ -293,7 +318,7 @@ end
 
 function woods.TreeAdded(entity, t)
     if not storage.mn_gh then return end
-    local houses_near = find_houses(entity)
+    local houses_near = find_houses(entity, false, true)
     if houses_near then
         local houses = storage.mn_gh
         local h
@@ -314,7 +339,7 @@ end
 
 function woods.TreeRemoved(entity, t)
     if not storage.mn_gh then return end
-    local houses_near = find_houses(entity)
+    local houses_near = find_houses(entity, false, true)
     if houses_near then
         local houses = storage.mn_gh
         local h
@@ -338,15 +363,36 @@ function woods.TreeRemoved(entity, t)
     end
 end
 
-function woods.SaplingPlaced(entity, t)
-    --if math.random(1,5) > 2 then
+function woods.SaplingPlaced(entity, t, player)
+    local houses_near
+    if storage.mn_gh then houses_near = find_houses(entity, false, true) end
+    local selected_houses = {}
+    if houses_near then
+        local houses = storage.mn_gh
+        local h
+        for i = 1,#houses_near do
+            h = houses_near[i].unit_number
+            if houses[h].grade < 1.5 * MNconst.GH_max_grades[houses_near[i].name] then
+                table.insert(selected_houses, {entity = houses_near[i], lastP = houses_near[i].products_finished or 0})
+            end
+        end
+    end
+    if selected_houses[1] then
         storage.mn_acts[find_free_tick(math.ceil((t+MNconst.GH_grow_interval*0.5)/20)*20)] = {
             type = act_types.mature,
-            e = entity
+            e = entity,
+            parents = selected_houses,
+            first_time = true
         }
-    --else
-      --  entity.destroy() --bad luck
-    --end
+    else
+        entity.destroy() --bad luck
+        if player then
+            --local char = player.character
+            --if char and char.valid then
+                player.insert({name = "mn-sapling-dry", count = 1})
+            --end
+        end
+    end    
 end
 
 return woods

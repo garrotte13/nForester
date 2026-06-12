@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.0
+Date: 2026-06-12
+  Info:
+    - Planted saplings will grow into trees only when there is a working forestry lodge nearby to avoid cheating. 20% chance of sudden sapling death is removed.
+    - Radius of rendered lodge's range circle is fixed to be a little smaller.
+    - Wood output of both forestry lodges mk-1 and mk-2 has been reduced for game balancing
+
+---------------------------------------------------------------------------------------------------
 Version: 1.0.1
 Date: 2026-03-24
   Info:
