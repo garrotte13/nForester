@@ -21,7 +21,6 @@ data:extend({
         type = "recipe",
         name = "mn-sapling-dry",
         energy_required = 140,
-        show_amount_in_title = false,
         enabled = false,
         category = "mn-sapling-growth",
         ingredients = {
@@ -35,7 +34,6 @@ data:extend({
         type = "recipe",
         name = "mn-sapling-advanced",
         energy_required = 90,
-        show_amount_in_title = false,
         enabled = false,
         category = "mn-sapling-growth",
         ingredients = {
