@@ -45,7 +45,7 @@ function house_renders.add_circle(house, player)
       if player and house_cursor(player) then
         r_obj = rendering.draw_circle{
           color={r=0.05, g=0.10, b=0.10, a=0.05},
-          radius = MN_const.GH_radius,
+          radius = MN_const.GH_radius - 0.5,
           filled=true,
           target=house,
           players={player},
@@ -57,7 +57,7 @@ function house_renders.add_circle(house, player)
       else
         r_obj = rendering.draw_circle{
           color={r=0.05, g=0.10, b=0.10, a=0.05},
-          radius = MN_const.GH_radius,
+          radius = MN_const.GH_radius - 0.5,
           filled=true,
           target=house,
           players={},

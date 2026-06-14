@@ -20,7 +20,9 @@ local function get_wood_recipe(minTop, maxTop, seedTop, timeTop, gradeTop, grade
     local max_from_grade = math.min(maxTop, min_from_grade + math.ceil( grade / (gradeTop / (maxTop - minTop) ) ) )
     local seed_prob = (grade/gradeTop) * seedTop
     local time_from_grade = timeTop + myround( (1 - grade/gradeTop) * ( timeTop / 3 ) )
-    return min_from_grade, max_from_grade, seed_prob, time_from_grade
+    --local fluid_from_grade = 90
+    local fluid_from_grade = 30 + math.floor(60 * grade / gradeTop)
+    return min_from_grade, max_from_grade, seed_prob, time_from_grade, fluid_from_grade
 end
 
 data.raw.recipe["bob-seedling"].hidden = true
@@ -45,9 +47,9 @@ local min_r
 local max_r
 local seed_prob
 local time_req
-
+local fluid_req
 for i = 0, GH_max_grades["bob-greenhouse"] do
-    min_r, max_r, seed_prob, time_req = get_wood_recipe(7, 14, 0.2, 60, GH_max_grades["bob-greenhouse"], i)
+    min_r, max_r, seed_prob, time_req, fluid_req = get_wood_recipe(7, 14, 0.2, 60, GH_max_grades["bob-greenhouse"], i)
     data:extend({
         {
             type = "recipe",
@@ -56,7 +58,7 @@ for i = 0, GH_max_grades["bob-greenhouse"] do
             enabled = true,
             hidden = true,
             ingredients = {
-                { type = "fluid", name = "water", amount = 75 }
+                { type = "fluid", name = "water", amount = fluid_req }
             },
             results = {
                 { type = "item", name = "wood", amount_min = min_r, amount_max = max_r },
@@ -76,7 +78,7 @@ for i = 0, GH_max_grades["bob-greenhouse"] do
 end
 
 for i = 0, GH_max_grades["bob-greenhouse-advanced"] do
-    min_r, max_r, seed_prob, time_req = get_wood_recipe(10, 36, 0.3, 45, GH_max_grades["bob-greenhouse-advanced"], i)
+    min_r, max_r, seed_prob, time_req, fluid_req = get_wood_recipe(10, 36, 0.3, 45, GH_max_grades["bob-greenhouse-advanced"], i)
     data:extend({
         {
             type = "recipe",
@@ -85,7 +87,7 @@ for i = 0, GH_max_grades["bob-greenhouse-advanced"] do
             enabled = true,
             hidden = true,
             ingredients = {
-                { type = "fluid", name = "mn-fertilizer", amount = 90 },
+                { type = "fluid", name = "mn-fertilizer", amount = fluid_req },
             },
             results = {
                 { type = "item", name = "wood", amount_min = min_r, amount_max = max_r },
@@ -131,6 +133,11 @@ table.insert(data.raw.technology["bob-fertiliser"].effects,
 {
     type = "unlock-recipe",
     recipe = "mn-fertilizer"
+})
+table.insert(data.raw.technology["bob-fertiliser"].effects,
+{
+    type = "unlock-recipe",
+    recipe = "mn-fertiliser-solid"
 })
 
 

@@ -49,7 +49,27 @@ local function smth_destroyed(e)
     end
 end
 
-
+script.on_configuration_changed(function(ChangedModData)
+    if ChangedModData.mod_changes["nForester"] then
+        local old = ChangedModsData.mod_changes["nForester"].old_version
+        if not old then
+          return
+        end
+        local major_str, minor_str, build_ver_str = string.match(old, "(%d)%.(%d)%.(%d+)")
+        local major = tonumber(major_str)
+        local minor = tonumber(minor_str)
+        local build_ver = tonumber(build_ver_str)
+        if major == 1 and minor == 0 then
+            if game.forces["player"].technologies["bob-fertiliser"].researched then
+                game.forces["player"].recipes["mn-fertiliser-solid"].enabled = true
+            end
+            local renders = rendering.get_all_objects("nForester")
+            for _, r_obj in pairs(renders) do
+                r_obj.radius = 20 - 0.5
+            end
+        end
+    end
+end)
 
 script.on_init(function()
     woods.GH_init()
