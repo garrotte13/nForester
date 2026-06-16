@@ -29,15 +29,15 @@ data:extend({
         ingredients = {
           { type = "fluid", name = "water", amount = 90 },
           { type = "fluid", name = "bob-carbon-dioxide", amount = 10 },
-          { type = "item", name = "bob-fertiliser", amount = 5 },
-          { type = "item", name = "mn-fertiliser-solid", amount = 5 }
+          { type = "item", name = "bob-fertiliser", amount = 3 },
+          { type = "item", name = "mn-fertiliser-solid", amount = 3 }
         },
         results = { { type = "fluid", name = "mn-fertilizer", amount = 90} },
 	},
     {
         type = "recipe",
 		name = "mn-fertiliser-solid",
-        energy_required = 5,
+        energy_required = 7,
         enabled = false,
         category = "chemistry",
         ingredients = {
