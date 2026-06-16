@@ -103,7 +103,7 @@ data:extend({
             {type = "item", name = "electronic-circuit", amount = 15},
             {type = "item", name = "stone-brick", amount = 30},
             mods["boblogistics"] and {type = "item", name = "bob-bronze-pipe", amount = 20} or {type = "item", name = "pipe", amount = 20},
-            mods["bobplates"] and { type = "item", name = "bob-steel-gear-wheel", amount = 12 } or { type = "item", name = "steel-plate", amount = 25 },
+            mods["bobplates"] and { type = "item", name = "bob-cobalt-steel-gear-wheel", amount = 12 } or { type = "item", name = "steel-plate", amount = 25 },
         },
         results = {{type = "item", name = "mn-greenhouse", amount = 1}}
     },

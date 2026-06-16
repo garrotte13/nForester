@@ -119,7 +119,7 @@ local c_gh_adv = {
       { type = "item", name = "bob-greenhouse", amount = 1 },
       { type = "item", name = "advanced-circuit", amount = 3 },
       mods["boblogistics"] and { type = "item", name = "bob-copper-pipe", amount = 5 } or { type = "item", name = "pipe", amount = 5 },
-      mods["bobplates"] and { type = "item", name = "bob-steel-gear-wheel", amount = 3 } or { type = "item", name = "steel-plate", amount = 5 },
+      mods["bobplates"] and { type = "item", name = "bob-cobalt-steel-gear-wheel", amount = 3 } or { type = "item", name = "steel-plate", amount = 5 },
     },
     results = { { type = "item", name = "bob-greenhouse-advanced", amount = 1 } },
 }
@@ -143,7 +143,7 @@ table.insert(data.raw.technology["bob-fertiliser"].effects,
 
 local r = data.raw["assembling-machine"]["bob-greenhouse"]
 r.crafting_categories = {"mn-wood-spam-tier1"}
---r.energy_usage = "70kW"
+r.energy_usage = "95kW"
 r.crafting_speed = 0.5
 r.allow_copy_paste = false
 r.return_ingredients_on_change = false
