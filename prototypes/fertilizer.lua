@@ -40,6 +40,7 @@ data:extend({
         energy_required = 7,
         enabled = false,
         category = "chemistry",
+        allow_productivity = true,
         ingredients = {
           { type = "fluid", name = "sulfuric-acid", amount = 10 },
           { type = "fluid", name = "ammonia", amount = 20 },
