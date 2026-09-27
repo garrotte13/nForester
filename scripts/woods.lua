@@ -129,7 +129,7 @@ function woods.MN_actions(e)
             if house.grade > 0 and house.entity.energy > 0 then                
                 if not house.tr_list[the_tr] then the_tr = next(house.tr_list) end
                 local k = 1
-                while k < 16 and the_tr do
+                while k < 11 and the_tr do
                     local tree = house.tr_list[the_tr]
                     if tree and tree.valid then
                         local t_stage = tree.tree_stage_index + 1
