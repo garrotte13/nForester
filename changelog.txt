@@ -1,8 +1,9 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.1
-Date: 2026-0?-?
+Date: 2026-10-14
   Info:
     - Another solid fertilizer (ammonium sulfate) recipe allows productivity.
+    - Slower poisoned trees search
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 2026-06-15
