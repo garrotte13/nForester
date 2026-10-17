@@ -54,7 +54,7 @@ for i = 0, GH_max_grades["bob-greenhouse"] do
         {
             type = "recipe",
             name = "mn-basic-greenhouse-cycle-" .. i,
-            category = "mn-wood-spam-tier1",
+            categories = {"mn-wood-spam-tier1"},
             enabled = true,
             hidden = true,
             ingredients = {
@@ -62,7 +62,7 @@ for i = 0, GH_max_grades["bob-greenhouse"] do
             },
             results = {
                 { type = "item", name = "wood", amount_min = min_r, amount_max = max_r },
-                { type = "item", name = "bob-seedling", amount = 1, probability = seed_prob}
+                { type = "item", name = "bob-seedling", amount = 1, independent_probability = seed_prob}
             },
             allow_decomposition = false,
             energy_required = time_req,
@@ -83,7 +83,7 @@ for i = 0, GH_max_grades["bob-greenhouse-advanced"] do
         {
             type = "recipe",
             name = "mn-advanced-greenhouse-cycle-" .. i,
-            category = "mn-wood-spam-tier2",
+            categories = {"mn-wood-spam-tier2"},
             enabled = true,
             hidden = true,
             ingredients = {
@@ -91,7 +91,7 @@ for i = 0, GH_max_grades["bob-greenhouse-advanced"] do
             },
             results = {
                 { type = "item", name = "wood", amount_min = min_r, amount_max = max_r },
-                { type = "item", name = "bob-seedling", amount = 1, probability = seed_prob}
+                { type = "item", name = "bob-seedling", amount = 1, independent_probability = seed_prob}
             },
             allow_decomposition = false,
             energy_required = time_req,

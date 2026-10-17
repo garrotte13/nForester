@@ -25,7 +25,7 @@ data:extend({
 		name = "mn-fertilizer",
         energy_required = 30,
         enabled = false,
-        category = "chemistry",
+        categories = {"chemistry"},
         ingredients = {
           { type = "fluid", name = "water", amount = 90 },
           { type = "fluid", name = "bob-carbon-dioxide", amount = 10 },
@@ -39,7 +39,7 @@ data:extend({
 		name = "mn-fertiliser-solid",
         energy_required = 7,
         enabled = false,
-        category = "chemistry",
+        categories = {"chemistry"},
         allow_productivity = true,
         ingredients = {
           { type = "fluid", name = "sulfuric-acid", amount = 10 },

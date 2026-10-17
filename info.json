@@ -1,12 +1,12 @@
 {
     "name": "nForester",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "title": "nForester",
     "author": "garrotte",
     "description": "A forest husbandry way of wood production for Bob mods",
-    "factorio_version": "2.0",
-    "dependencies": ["base >= 2.0.68",
-      "bobrevamp >= 2.1.0",
+    "factorio_version": "2.1",
+    "dependencies": ["base >= 2.1.20",
+      "bobrevamp >= 3.0.0",
       "bobgreenhouse"
     ]
   }

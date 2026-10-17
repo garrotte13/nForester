@@ -22,7 +22,7 @@ data:extend({
         name = "mn-sapling-dry",
         energy_required = 140,
         enabled = false,
-        category = "mn-sapling-growth",
+        categories = {"mn-sapling-growth"},
         ingredients = {
           { type = "item", name = "bob-seedling", amount = 30 },
           { type = "fluid", name = "water", amount = 175 },
@@ -35,7 +35,7 @@ data:extend({
         name = "mn-sapling-advanced",
         energy_required = 90,
         enabled = false,
-        category = "mn-sapling-growth",
+        categories = {"mn-sapling-growth"},
         ingredients = {
           { type = "item", name = "bob-seedling", amount = 30 },
           { type = "fluid", name = "water", amount = 175 },
