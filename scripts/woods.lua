@@ -136,7 +136,7 @@ function woods.MN_actions(e)
                         local t_gray = tree.tree_gray_stage_index + 3
                         if t_stage > 2 or t_gray > 6 then
                             if math.random(1, t_stage) > 2 or math.random(1, t_gray) > 6 then
-                                tree.damage(800, "neutral")
+                                tree.damage(800, "player")
                                 house.entity.get_output_inventory().insert({name="wood", count=4})
                                 --game.print("A tree was killed.")
                             end
